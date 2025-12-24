@@ -2,10 +2,10 @@
 android:orientation="vertical" android:padding="24dp"
 android:layout_width="match_parent" android:layout_height="match_parent">
 
-<Button android:id="@+id/btnSetPin" android:text="Set PIN"
+<EditText android:id="@+id/pinInput" android:hint="Enter PIN"
+android:inputType="numberPassword"
 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
-<Button android:id="@+id/btnApps" android:text="Open Locker"
+<Button android:id="@+id/savePin" android:text="Save PIN"
 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
 </LinearLayout>
