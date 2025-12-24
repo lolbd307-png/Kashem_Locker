@@ -1,3 +1,22 @@
+#!/bin/bash
+set -e
+
+MANIFEST_PATH="app/src/main/AndroidManifest.xml"
+
+echo "🔧 Fixing AndroidManifest.xml (Phase 3)"
+
+# Check manifest exists
+if [ ! -f "$MANIFEST_PATH" ]; then
+  echo "❌ ERROR: $MANIFEST_PATH not found"
+  exit 1
+fi
+
+# Backup existing manifest
+cp "$MANIFEST_PATH" "${MANIFEST_PATH}.bak"
+echo "📦 Backup created: AndroidManifest.xml.bak"
+
+# Replace manifest content
+cat <<'EOF' > "$MANIFEST_PATH"
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -57,3 +76,12 @@
     </application>
 
 </manifest>
+EOF
+
+echo "✅ AndroidManifest.xml replaced successfully"
+
+# Optional local build test
+echo "🚀 Running local Gradle build test..."
+./gradlew clean assembleDebug --no-daemon
+
+echo "🎉 Phase 3 Manifest Fix completed successfully"
